@@ -147,5 +147,4 @@ angular.module('PokemonApp', [])
 		};
 		
 		$scope.alert = alert.bind(window);
-		$scope.searchval = '';
     });

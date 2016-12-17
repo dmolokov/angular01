@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html ng-app="PokemonApp">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Вывод покемонов / Фреймворк AngularJS / Нетология</title>
+        <script src="../bower_components/angular/angular.js"></script>
+    </head>
+
+    <body ng-controller="PokemonListCtrl">
+		<p><label for="searchbox">Текст для фильтрации по типу (water, fire, electric, grass, normal, poison)</label>&nbsp;<input id="searchbox" type="text" ng-model="searchtext.type"/></p>
+		<p><label for="searchcombo">Выбор типа</label>&nbsp;<select id="searchcombo" name="searchcombo" ng-model="searchval">
+		<option></option>
+		<option>electric</option>
+		<option>fire</option>
+		<option>grass</option>
+		<option>normal</option>
+		<option>poison</option>
+		<option>water</option>
+		</select></p>
+        <ul>
+            <li ng-repeat="pokemon in pokemons | filter : {type:searchval} | filter : searchtext | orderBy: ['name', '-weight']">
+                <img ng-src="{{ pokemon.ThumbnailImage }}" ng-click="(alert(pokemon.name))">
+                <small>ID #{{ pokemon.id }}</small>
+                <h1><font color='{{ selectedColors[(pokemon.type | filter: filterByType)[0]]}}'>{{ pokemon.name }}</font></h1>
+                <p>Вес: {{ pokemon.weight }}, рост: {{pokemon.height}}</p>
+                <hr />
+            </li>
+        </ul>
+
+        <script src="pokemons.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    </body>
+
+</html>
